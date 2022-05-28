@@ -1,0 +1,7 @@
+seaborn
+keras
+sklearn
+joblib
+pandas
+requests
+tensorflow==2.3.0
