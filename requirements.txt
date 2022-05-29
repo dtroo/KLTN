@@ -4,4 +4,7 @@ sklearn
 joblib
 pandas
 requests
+kfp
+scikit-learn
+numpy
 tensorflow==2.3.0
