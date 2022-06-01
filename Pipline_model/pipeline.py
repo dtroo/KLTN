@@ -55,7 +55,7 @@ def deploy_model_op(model):
     )
 
 @dsl.pipeline(
-   name='Boston Housing Pipeline',
+   name='kubeflow piplines dtro',
    description='An example pipeline that trains and logs a regression model.'
 )
 def boston_pipeline():
