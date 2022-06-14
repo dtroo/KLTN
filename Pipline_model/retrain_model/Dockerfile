@@ -4,7 +4,7 @@ WORKDIR /app
 
 #RUN pip install -U scikit-learn numpy
 
-COPY train.py ./train.py
+COPY retrain.py ./retrain.py
 
 COPY requirements.txt ./requirements.txt
 
@@ -12,4 +12,4 @@ RUN pip install tensorflow tensorflow-gpu
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT [ "python", "train.py" ]
+ENTRYPOINT [ "python", "retrain.py" ]

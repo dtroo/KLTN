@@ -1,13 +1,13 @@
 import argparse
-import joblib
 import numpy as np
 from sklearn.metrics import mean_squared_error
+from keras.models import load_model
 
 def test_model(x_test, y_test, model_path):
     x_test_data = np.load(x_test)
     y_test_data = np.load(y_test)
 
-    model = joblib.load(model_path)
+    model = load_model(model_path)
     y_pred = model.predict(np.array(x_test_data)/128.0)
 
     err = mean_squared_error(y_test_data, y_pred)

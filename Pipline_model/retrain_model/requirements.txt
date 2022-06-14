@@ -2,5 +2,4 @@ scikit-learn
 numpy
 pandas
 keras
-joblib
 seaborn
