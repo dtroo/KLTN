@@ -84,13 +84,13 @@ if __name__ == '__main__':
      
   # check to do retraining or crate new model
   if(check_model_is_exists() == True):
-    print('Retraining data to model....')_
+    print('Retraining data to model....')
     if(reparing_data() ==  False):
       print("new data not found!.....")
     else:
       print('retraining model......')
       _preprocess_data()
-      np.save('retrain.npy','1')
+      #np.save('retrain.npy','1')
   # create new model
   else:
     print('Preprocessing data to new model...')

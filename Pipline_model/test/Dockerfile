@@ -1,5 +1,4 @@
-#FROM python:3.7-slim
-FROM d1v1n3/train-pipline-dtro-2
+FROM python:3.7-slim
 
 WORKDIR /app
 

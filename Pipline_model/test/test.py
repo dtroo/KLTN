@@ -8,7 +8,7 @@ def test_model(x_test, y_test, model_path):
     y_test_data = np.load(y_test)
 
     model = load_model(model_path)
-    y_pred = model.predict(np.array(x_test_data)/128.0)
+    y_pred = model.predict(np.array(x_test_data))
 
     err = mean_squared_error(y_test_data, y_pred)
     

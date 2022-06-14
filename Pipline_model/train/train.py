@@ -18,6 +18,8 @@ def train_model(x_train ,y_train, x_valid, y_valid ):
 
     x_train_data = np.load(x_train)
     y_train_data = np.load(y_train)
+    x_valid_data = np.load(x_valid)
+    y_valid_data = np.load(y_valid)
 
     model = Sequential()
     model.add(layers.Input(shape=(28,28,1)))
@@ -32,7 +34,7 @@ def train_model(x_train ,y_train, x_valid, y_valid ):
     # compile model
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy',metrics.Recall(),metrics.Precision()])
     
-    model.fit(np.array(x_train)/128.0,np.array(y_train),epochs=2,batch_size=100,validation_data=(np.array(x_valid)/128.0, np.array(y_valid)))
+    model.fit(np.array(x_train_data),np.array(y_train_data),epochs=2,batch_size=100,validation_data=(np.array(x_valid_data), np.array(y_valid_data)))
     
     model.save('model.h5')
 

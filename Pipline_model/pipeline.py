@@ -1,5 +1,6 @@
 import kfp
 from kfp import dsl
+import requests
 
 def preprocess_op():
 
@@ -18,7 +19,7 @@ def preprocess_op():
         }
     )
 
-def train_op(x_train, y_train):
+def train_op(x_train, y_train,x_valid,y_valid):
 
     return dsl.ContainerOp(
         name='Train Model',
@@ -34,7 +35,7 @@ def train_op(x_train, y_train):
         }
     )
 
-def re_train_op(x_train, y_train):
+def re_train_op(x_train, y_train,x_valid,y_valid, model):
 
     return dsl.ContainerOp(
         name='Retrain Model',
@@ -76,15 +77,22 @@ def deploy_model_op(model):
         ]
     )
 
+def check_model_is_exists():
+  ## url model 
+  URL = "https://github.com/dtroo/KLTN/raw/main/Model/model.h5"
+  r = requests.get(URL)
+  if r.status_code == 200:
+    return True
+  return False
+
 @dsl.pipeline(
    name='Machine learning Pipeline',
    description='Create or retrain model pipeline'
 )
 def COTM_pipeline():
     _preprocess_op = preprocess_op()
-    try:
-        step = _preprocess_data.outputs['retrain']
-        _train_op = train_op(
+    if(check_model_is_exists() == True):
+        _train_op = re_train_op(
             dsl.InputArgumentPath(_preprocess_op.outputs['x_train']),
             dsl.InputArgumentPath(_preprocess_op.outputs['y_train']),
             dsl.InputArgumentPath(_preprocess_op.outputs['x_valid']),
@@ -102,7 +110,7 @@ def COTM_pipeline():
             dsl.InputArgumentPath(_train_op.outputs['model'])
         ).after(_test_op)
     
-    except:
+    else:
         _train_op = train_op(
             dsl.InputArgumentPath(_preprocess_op.outputs['x_train']),
             dsl.InputArgumentPath(_preprocess_op.outputs['y_train']),

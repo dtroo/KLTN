@@ -3,7 +3,7 @@ from github import Github
 from github import InputGitTreeElement
 
 def push_model_to_github(model_path):
-    token = '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'
+    token = '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'
     g = Github(token)
 
     repo = g.get_user().get_repo('KLTN')
