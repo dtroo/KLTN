@@ -1,3 +1,4 @@
+/.env
 /top.php?stuff='uname >q36497765 #
 /h21y8w52.nsf?<script>cross_site_scripting.nasl</script>
 /ca000001.pl?action=showcart&hop=\"><script>alert('vulnerable')</script>&path=acatalog/
